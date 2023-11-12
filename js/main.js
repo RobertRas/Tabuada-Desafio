@@ -14,6 +14,8 @@ var btnOkResposta = document.createElement("button")
     btnOkResposta.setAttribute("class", "btnResposta")
 var contResposta = 0
 
+var intro = document.querySelector("#intro")
+
 var min = document.querySelector('#min')
 var max = document.querySelector('#max')
 
@@ -55,18 +57,21 @@ btnOkIntro.addEventListener('click', function (){
         a div questoes fica visivel, display = "inline-box"
         uma funcao que gera as questoes eh chamada adicionando as questoes em na div questoes
     */
-  if(min.value > max.value) {
-    min.value = max.value - 1
-    alert("digite um número menor para o segundo valor")
-  } else {
-    intro.style.display = 'none'
+    if( min.value != 0 && max.value != 0) {
+        if(min.value > max.value) {
+            min.value = max.value - 1
+            alert("digite um número menor para o segundo valor")
+        } else {
+            intro.style.display = 'none'
+    
+            questoes.style.display = "inline-flex"
+            questoes.setAttribute('class', 'container')
+            questoes.setAttribute('id', 'questoes')
+    
+            gerarQuestao()
+        }
+    }
 
-    questoes.style.display = "inline-flex"
-    questoes.setAttribute('class', 'container')
-    questoes.setAttribute('id', 'questoes')
-
-    gerarQuestao()
-  }
 })
 
 function gerarQuestao() {    
@@ -81,10 +86,6 @@ function gerarQuestao() {
     q.objeto = paragrafo
 
     resposta.value = 0
-
-   //document.getElementsByClassName("number").focus();
-    //resposta.focus();
-
 
     var texto = document.createTextNode(`${q.n1} x ${q.n2} = `)
 
