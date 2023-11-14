@@ -27,26 +27,67 @@ let btnOkIntro = document.querySelector('#ok')
 
 
 btnOkResposta.addEventListener('click', function ()
-    {
+    {        
         var texto = document.createTextNode(`${resposta.value}`)
-        contResposta++
-
-       q.resposta = parseInt(resposta.value)
-
-       if(q.verificarResposta()) {
+        
+        q.resposta = resposta.value
         q.objeto.appendChild(texto)
-        q.objeto.style.backgroundColor = "green"
+        
+        if(q.verificarResposta()) {
+            q.objeto.style.backgroundColor = "green"
         } else {
-            q.objeto.appendChild(texto)
             q.objeto.style.backgroundColor = "red"
         }
 
+        if(contResposta < qnt.value ) {
+            
+
+            gerarQuestao()
+        } else if(contResposta == qnt.value) {
+            resposta.style.display = "none"
+            btnOkResposta.innerHTML = "Reiniciar"
+        } else if(contResposta >= qnt.value) {
+            contResposta = 0
+    
+            resposta.value = 0
+            intro.style.display = "inline-block"
+            resposta.style.display = "inline-flex"
+            questoes.remove()
+            //document.getElementsByClassName('questao').remove()
+        }
+
+        console.log(contResposta)
+        
+        contResposta++
+        
+        /*
+        var texto = document.createTextNode(`${resposta.value}`)
+        contResposta++
+        
+        q.resposta = parseInt(resposta.value)
+        q.objeto.appendChild(texto)
+        
+        if(q.verificarResposta()) {
+            q.objeto.style.backgroundColor = "green"
+        } else {
+            q.objeto.style.backgroundColor = "red"
+        }
+        
+        if(contResposta == (qnt.value - 1)) {
+            btnOkResposta.innerHTML = "Reiniciar"
+        }
+        
         if(contResposta < qnt.value) {
             gerarQuestao()
-        } else {
+        } else if(contResposta == qnt.value) {
             resposta.style.display = "none"
-            btnOkResposta.style.display = "none"
+            //btnOkResposta.style.display = "none"
+            //btnOkResposta.style.display = "inline-block"
+            btnOkResposta.innerHTML = "Reiniciar"
         }
+
+        */
+        
 } )
 
 btnOkIntro.addEventListener('click', function (){
@@ -57,7 +98,8 @@ btnOkIntro.addEventListener('click', function (){
         a div questoes fica visivel, display = "inline-box"
         uma funcao que gera as questoes eh chamada adicionando as questoes em na div questoes
     */
-    if( min.value != 0 && max.value != 0) {
+
+    if( min.value != 0 && max.value != 0 && qnt.value != 0) {
         if(min.value > max.value) {
             min.value = max.value - 1
             alert("digite um número menor para o segundo valor")
@@ -69,7 +111,22 @@ btnOkIntro.addEventListener('click', function (){
             questoes.setAttribute('id', 'questoes')
     
             gerarQuestao()
+            contResposta++
         }
+    } else {
+     
+        alert("Digite um valor diferente de zero para todos os campos.")
+       /*
+       setTimeout(function () {
+           document.getElementById("avisoValidacao").remove();
+       }, 5000);
+        //document.getElementById("avisoValidacao").remove();
+        var aviso = document.createElement("p")
+        aviso.setAttribute('id', 'avisoValidacao')
+        var texto = document.createTextNode("Digite um valor diferente de zero para todos os campos.")
+        aviso.appendChild(texto)
+        intro.appendChild(aviso)
+        */
     }
 
 })
@@ -82,7 +139,7 @@ function gerarQuestao() {
     btnOkResposta.style.display = "inline-block"
 
     var paragrafo = document.createElement("p")
-    paragrafo.setAttribute('class', "questao")
+    paragrafo.setAttribute("class", "questao")
     q.objeto = paragrafo
 
     resposta.value = 0
