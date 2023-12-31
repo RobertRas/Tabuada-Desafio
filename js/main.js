@@ -40,8 +40,7 @@ btnOkResposta.addEventListener('click', function ()
         }
 
         if(contResposta < qnt.value ) {
-            
-
+    
             gerarQuestao()
         } else if(contResposta == qnt.value) {
             resposta.style.display = "none"
@@ -58,7 +57,7 @@ btnOkResposta.addEventListener('click', function ()
 
         console.log(contResposta)
         
-        contResposta++
+        //contResposta++
         
         /*
         var texto = document.createTextNode(`${resposta.value}`)
@@ -111,7 +110,7 @@ btnOkIntro.addEventListener('click', function (){
             questoes.setAttribute('id', 'questoes')
     
             gerarQuestao()
-            contResposta++
+            //contResposta++
         }
     } else {
      
@@ -151,8 +150,10 @@ function gerarQuestao() {
     questoes.appendChild(paragrafo)
     questoes.appendChild(btnOkResposta)
     body.appendChild(questoes)
+
+    contResposta++
 }
 
 function numAleatorio(max, min) {
-    return Math.floor((Math.random() * (max-min)) + min)
+    return Math.floor((Math.random() / (max-min)) + min)
 }
