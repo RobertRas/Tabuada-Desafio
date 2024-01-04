@@ -1,0 +1,17 @@
+* [33mcommit c0ed571741c80c908a5108a6f8a645fa9fed0de9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+[31m|[m Author: Nathan8bits <natan8bits@gmail.com>
+[31m|[m Date:   Mon Nov 13 22:08:59 2023 -0300
+[31m|[m 
+[31m|[m     ultima versao. Retornando pra intro. Questoes nao somem. contResposta ta bugado.
+[31m|[m 
+* [33mcommit b2250e34b53a727e0dc2340033be4dcba6a68e70[m
+[31m|[m Author: Nathan8bits <natan8bits@gmail.com>
+[31m|[m Date:   Sun Nov 12 13:18:46 2023 -0300
+[31m|[m 
+[31m|[m     Os inputs da intro estão 'required' com verificacão no btnOkIntro
+[31m|[m 
+* [33mcommit a8eeebeb794b91b51237510dfbcc1074dc90a2a5[m
+  Author: Nathan8bits <natan8bits@gmail.com>
+  Date:   Sun Nov 12 12:34:57 2023 -0300
+  
+      Desafio da tabuada de multiplicação
