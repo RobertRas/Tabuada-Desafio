@@ -17,6 +17,12 @@ h2{
     margin-top: 10%;
 }
 
+p{
+    padding: 2%;
+    background-color: rgb(0, 145, 145);;
+    min-width: 80px;
+}
+
 .container{
     display: block;
     color: aliceblue;
@@ -25,13 +31,18 @@ h2{
     background-color: rgb(0, 145, 145);
 }
 
+.containerQuestoes {
+    padding: 2%;
+    display: block;
+    color: aliceblue;
+    border-radius: 5px;
+}
+
 #questoes{
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-
 
 .none {
     display: none;
@@ -39,7 +50,6 @@ h2{
 
 .questao {
     margin: 0px;
-    width: 45%;
     margin-right: 5%;
 }
 
@@ -64,10 +74,21 @@ button {
 }
 
 button:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     transition: 0.25s;
 }
 
 button:active{
     background-color: blueviolet;
+}
+
+#cronometro{
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    background: #000000;
+    color: aliceblue;
+    position: fixed;
+    text-align: center;
+    width: 30%;
+    top: 0;
+    right: 20%;
 }

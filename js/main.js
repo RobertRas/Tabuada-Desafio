@@ -1,136 +1,90 @@
-import {Questao} from './Questao.js'
+import { Questao } from './Questao.js'
+
+var segundos = 0
+var cronometro = document.querySelector('#cronometro')
+var iniciarT = false
+
+/** QUESTAO **/
 var q = new Questao()
-
-var body = document.querySelector("body")
-
 var questoes = document.createElement("div")
-    questoes.style.display = "none"
+questoes.style.display = "none"
 
 var resposta = document.createElement("input")
-    resposta.setAttribute("class", "number")
-    resposta.setAttribute("type", "number")
+resposta.setAttribute("class", "number")
+resposta.setAttribute("type", "number")
 
 var btnOkResposta = document.createElement("button")
-    btnOkResposta.setAttribute("class", "btnResposta")
-var contResposta = 0
+btnOkResposta.setAttribute("class", "btnResposta")
+var contResposta = 1
+/** -----  */
 
+
+/**  INTRO  */
+var body = document.querySelector("body")
 var intro = document.querySelector("#intro")
-
 var min = document.querySelector('#min')
 var max = document.querySelector('#max')
-
 let qnt = document.querySelector('#quantidade')
 qnt.setAttribute('tabindex', '1')
 let btnOkIntro = document.querySelector('#ok')
+/** ----- */
 
+btnOkResposta.addEventListener('click', function () {
+    var texto = document.createTextNode(`${resposta.value}`)
 
+    q.resposta = resposta.value
+    q.objeto.appendChild(texto)
 
+    if (q.verificarResposta()) {
+        q.objeto.style.backgroundColor = "green"
+    } else {
+        q.objeto.style.backgroundColor = "red"
+    }
 
-btnOkResposta.addEventListener('click', function ()
-    {        
-        var texto = document.createTextNode(`${resposta.value}`)
-        
-        q.resposta = resposta.value
-        q.objeto.appendChild(texto)
-        
-        if(q.verificarResposta()) {
-            q.objeto.style.backgroundColor = "green"
-        } else {
-            q.objeto.style.backgroundColor = "red"
-        }
+    if (contResposta < qnt.value) {
+        gerarQuestao()
+    } else if (contResposta == qnt.value) {
+        resposta.style.display = "none"
+        btnOkResposta.innerHTML = "Reiniciar"
+    } else if (contResposta >= qnt.value) {
+        contResposta = 0
 
-        if(contResposta < qnt.value ) {
+        resposta.value = 0
+        intro.style.display = "inline-block"
+        resposta.style.display = "inline-flex"
+        questoes.remove()
+        window.location.reload(true)
+    }
+    console.log("contResposta: ", contResposta)
+
+    contResposta++
+})
+
+btnOkIntro.addEventListener('click', function () {
+    iniciarT = true
     
-            gerarQuestao()
-        } else if(contResposta == qnt.value) {
-            resposta.style.display = "none"
-            btnOkResposta.innerHTML = "Reiniciar"
-        } else if(contResposta >= qnt.value) {
-            contResposta = 0
-    
-            resposta.value = 0
-            intro.style.display = "inline-block"
-            resposta.style.display = "inline-flex"
-            questoes.remove()
-            //document.getElementsByClassName('questao').remove()
-        }
 
-        console.log(contResposta)
-        
-        //contResposta++
-        
-        /*
-        var texto = document.createTextNode(`${resposta.value}`)
-        contResposta++
-        
-        q.resposta = parseInt(resposta.value)
-        q.objeto.appendChild(texto)
-        
-        if(q.verificarResposta()) {
-            q.objeto.style.backgroundColor = "green"
-        } else {
-            q.objeto.style.backgroundColor = "red"
-        }
-        
-        if(contResposta == (qnt.value - 1)) {
-            btnOkResposta.innerHTML = "Reiniciar"
-        }
-        
-        if(contResposta < qnt.value) {
-            gerarQuestao()
-        } else if(contResposta == qnt.value) {
-            resposta.style.display = "none"
-            //btnOkResposta.style.display = "none"
-            //btnOkResposta.style.display = "inline-block"
-            btnOkResposta.innerHTML = "Reiniciar"
-        }
-
-        */
-        
-} )
-
-btnOkIntro.addEventListener('click', function (){
-    //document.write(`<h1>teste ${qnt.value} ${min.value} ${max.value}</h1>`)
-    /*     
-        um contador eh incrementado, entra em um condicional se o cont for menor que qnt
-        a intro desaparece
-        a div questoes fica visivel, display = "inline-box"
-        uma funcao que gera as questoes eh chamada adicionando as questoes em na div questoes
-    */
-
-    if( min.value != 0 && max.value != 0 && qnt.value != 0) {
-        if(min.value > max.value) {
+    if (min.value != 0 && max.value != 0 && qnt.value != 0) {
+        if (min.value > max.value) {
             min.value = max.value - 1
             alert("digite um número menor para o segundo valor")
         } else {
             intro.style.display = 'none'
-    
+
             questoes.style.display = "inline-flex"
-            questoes.setAttribute('class', 'container')
+            questoes.setAttribute('class', 'containerQuestoes')
             questoes.setAttribute('id', 'questoes')
-    
+
+            console.log("contResposta: ", contResposta)
             gerarQuestao()
-            //contResposta++
         }
     } else {
-     
-        alert("Digite um valor diferente de zero para todos os campos.")
-       /*
-       setTimeout(function () {
-           document.getElementById("avisoValidacao").remove();
-       }, 5000);
-        //document.getElementById("avisoValidacao").remove();
-        var aviso = document.createElement("p")
-        aviso.setAttribute('id', 'avisoValidacao')
-        var texto = document.createTextNode("Digite um valor diferente de zero para todos os campos.")
-        aviso.appendChild(texto)
-        intro.appendChild(aviso)
-        */
-    }
 
+        alert("Digite um valor diferente de zero para todos os campos.")
+    }
 })
 
-function gerarQuestao() {    
+function gerarQuestao() {
     q.n1 = numAleatorio(parseInt(max.value), parseInt(min.value))
     q.n2 = numAleatorio(parseInt(max.value), parseInt(min.value))
 
@@ -150,10 +104,18 @@ function gerarQuestao() {
     questoes.appendChild(paragrafo)
     questoes.appendChild(btnOkResposta)
     body.appendChild(questoes)
-
-    contResposta++
 }
 
 function numAleatorio(max, min) {
-    return Math.floor((Math.random() / (max-min)) + min)
+    return Math.floor((Math.random() * (max - min)) + min)
 }
+
+function ContarSegundos(){
+    if(iniciarT) {
+        segundos++
+    }
+
+    cronometro.innerHTML = `${segundos} segundos`
+    document.Writeln("Já passou " + segundos +" segundos...");
+}
+setInterval(ContarSegundos, 1000);
