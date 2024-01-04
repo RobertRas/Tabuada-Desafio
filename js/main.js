@@ -44,6 +44,7 @@ btnOkResposta.addEventListener('click', function () {
     if (contResposta < qnt.value) {
         gerarQuestao()
     } else if (contResposta == qnt.value) {
+        iniciarT = false
         resposta.style.display = "none"
         btnOkResposta.innerHTML = "Reiniciar"
     } else if (contResposta >= qnt.value) {
