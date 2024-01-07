@@ -8,24 +8,61 @@
 </head>
 <body>
     <main>
-        <p id="cronometro">0 segundos</p>
+        <div class="agrupador">
 
-        <div class="container" id="intro">
-            <h1 id="teste">Desafio da tabuada</h1>
-            <h2>Quantas questões?
-                <input id="quantidade" class="number" type="number" value="1" required>
-            </h2>
+            <div class="time">
+                <div class="cronometro">
+                    <p>cronômetro</p>
+                    <p>0</p>
+                </div>
+            </div>
 
-            <h2>Entre 
-                <input class="number" id="min" type="number" value="1" required>
-                e 
-                <input class="number" id="max" type="number" value="10" required>
-            </h2>
-            <button id="ok">OK</button>
+
+
+            <div class="container" id="intro">
+<!--
+                <div class="estilo-questao">
+                    <div class="containerQuestoes" id="questoes" >
+                        <h2 class="questao ">7 x 2 = </h2>
+
+                        <p><input class="number estilo" type="number"></p>
+                            
+                        <button class="btnResposta estilo" >OK</button>
+                        
+                    </div>
+                </div>
+-->
+                
+                <div class="ordem">
+                    <div class="Titulo formato">
+                        <h1>Desafio da tabuada</h1>
+                    </div>
+                    
+                    <div class="questoes formato">
+                        <h2>Quantas questões?
+                        <input id="quantidade" class="number" type="number" value="1" required>
+                        </h2>
+                    </div>
+                    
+                    <div class="opcao formato">
+                        <h2>Multiplicar entre</h2>
+                        <h2><input class="number" placeholder="0" id="min" type="number" value="" required>
+                            à 
+                            <input class="number" id="max" type="number" placeholder="10" value="" required>
+                        </h2>
+                        <button id="ok" style   ="margin-top:10px">OK</button>
+                    </div>
+                    
+                
+                </div>
+                -->
+            </div>
+
+
 
         </div>
     </main>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>-->
 </body>
 </html>
